@@ -1,13 +1,83 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.card__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 10px;
+  
+  background-color: rgb(179, 210, 210);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.heading-container {
+  background-color: cadetblue;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  
 }
+
+.heading-container h1 {
+color: floralwhite;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 300px;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card__image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card__info {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.card__category {
+  display: block;
+  font-size: 14px;
+  color: #888;
+}
+
+.card__title {
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.heading-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #b16969; /* You can adjust the color as needed */
+  font-size: 24px; /* You can adjust the font size as needed */
+}
+

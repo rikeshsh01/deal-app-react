@@ -1,17 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import createRoot from "react-dom";
+import Card from "./components/Card";
+import "../src/index.css";
+import Heading from "./components/Heading";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+createRoot.render(
+  <>
+  <Heading/>
+  <div className="background">
+  <div className="card__container">
+  <Card imgSrc = "https://picsum.photos/id/1/200/200" category = " Netflix Original Series" title="Avenger"/>
+  <Card imgSrc = "https://picsum.photos/id/2/200/200" category = " Netflix Original Series" title="Money Heist"/>
+  <Card imgSrc = "https://picsum.photos/id/3/200/200" category = " Netflix Original Series" title="Squid Game"/>
+  <Card imgSrc = "https://picsum.photos/id/1/200/200" category = " Netflix Original Series" title="Avenger"/>
+  <Card imgSrc = "https://picsum.photos/id/2/200/200" category = " Netflix Original Series" title="Money Heist"/>
+  <Card imgSrc = "https://picsum.photos/id/3/200/200" category = " Netflix Original Series" title="Squid Game"/>
+  </div>
+  </div>
+  </>,
+  document.getElementById("root")
+)
