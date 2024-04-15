@@ -1,13 +1,15 @@
 import React from "react";
+import { FaUser } from 'react-icons/fa';
 
-function Heading(){
+const Header = () => {
     return (
-        <>
-        <div className="heading-container">
-        <h1>Movies Name</h1>
-        </div>
-        </>
-    )
-}
-
-export default Heading;
+      <header className="header">
+        <div className="logo">Logo</div>
+        <nav className="navigation">Navigation Menu</nav>
+        <div className="search">Search</div>
+        <div className="user-profile">User Profile <FaUser /> {/* Adding user icon */}</div>
+      </header>
+    );
+  };
+  
+  export default Header;
