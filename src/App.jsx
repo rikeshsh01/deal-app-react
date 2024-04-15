@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./components/Card";
 import Odata from "./components/Sdata.jsx";
-import Heading from "./components/Heading.jsx"
+import Header from "./components/Header.jsx"
 
 
 const data = JSON.parse(Odata);
@@ -9,14 +9,16 @@ const data = JSON.parse(Odata);
 const App = () => {
     return (
         <>
-            <Heading />
+            <Header />
 
             {data.map((val, index, arr) => {
                 return (
                     <Card
                         imgSrc={val.imgSrc}
-                        category={val.category}
-                        title={val.title} />
+                        tag={val.tag}
+                        title={val.title}
+                        description = {val.description}
+                        location = {val.location} />
                 )
             })}
 

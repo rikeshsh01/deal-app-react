@@ -1,77 +1,132 @@
-.heading__style {
-  padding: 30px 0;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-  font-weight: 700;
-  color: rgb(28, 27, 26);
-  margin-bottom: 10px;
-  border-radius: 10px;
-}
-
-.cards {
-  width: 100%;
-  height: auto;
-}
-
-.card {
-  width: 21%;
-  margin: 6%;
-  background-color: dimgray;
-  border-radius: 10px;
+/* css for card components  */
+.wrapper {
+  height: 420px;
+  width: 654px;
+  margin: 40px;
+  border-radius: 7px 7px 7px 7px;
+  /* VIA CSS MATIC https://goo.gl/cIbnS */
+  -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
   float: left;
 }
 
-
 .card__image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+  float: left;
+  height: 420px;
+  width: 327px;
+}
+
+.card__image img {
+  border-radius: 7px 0 0 7px;
 }
 
 .card__info {
-  padding-top: 20px;
-  text-align: center;
+  float: left;
+  height: 420px;
+  width: 327px;
+  border-radius: 0 7px 10px 7px;
+  background-color: #ffffff;
 }
 
-.card__category {
-  display: block;
+.card__info__text {
+  height: 300px;
+  width: 327px;
+}
+
+.card__info__text h1 {
+  margin: 0 0 0 38px;
+  padding-top: 52px;
+  font-size: 34px;
+  color: #474747;
+}
+
+.card__info__text h1,
+.product__price p {
+  font-family: 'Bentham', serif;
+}
+
+.card__info__text h2 {
+  margin: 0 0 47px 38px;
+  font-size: 13px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #d2d2d2;
+  letter-spacing: 0.2em;
+}
+
+.card__info__text p {
+  height: 125px;
+  margin: 0 0 0 38px;
+  font-family: 'Playfair Display', serif;
+  color: #8d8d8d;
+  line-height: 1.7em;
+  font-size: 15px;
+  font-weight: lighter;
+  overflow: hidden;
+}
+
+.product__price {
+  height: 103px;
+  width: 327px;
+  margin-top: 17px;
+  position: relative;
+}
+
+.product__price p {
+  display: inline-block;
+  position: absolute;
+  top: 0px;
+  height: 50px;
+  font-family: 'Trocchi', serif;
+  margin: 0 0 0 38px;
+  font-size: 28px;
+  font-weight: lighter;
+  color: #474747;
+}
+
+span {
+  display: inline-block;
+  height: 50px;
+  font-family: 'Suranna', serif;
+  font-size: 34px;
+}
+
+.product__price button {
+  float: right;
+  display: inline-block;
+  height: 50px;
+  width: 176px;
+  margin: 0 40px 0 16px;
+  box-sizing: border-box;
+  border: transparent;
+  border-radius: 60px;
+  font-family: 'Raleway', sans-serif;
   font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   color: #ffffff;
-}
-
-.card__title {
-  margin-top: 5px;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-}
-
-button {
-  padding: 10px 20px;
-  color: black;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
+  background-color: #9cebd5;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-bottom: 10px
+  outline: none;
 }
 
-button:hover {
-  background-color: #0056b3;
+.product__price button:hover {
+  background-color: #79b0a1;
 }
 
 
+/* Header section css  */
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333;
-  color: white;
+  background-color: white;
+  color:black;
 }
 
 .logo {
@@ -79,13 +134,31 @@ button:hover {
 }
 
 .navigation {
-  flex-grow: 1;
-  text-align: center;
+  display: flex;
+  justify-content: center;  /* Adjusted for a more central alignment */
+  gap: 20px;  /* Adds space between links */
+}
+
+.navigation a {
+  color: rgb(10, 10, 10);
+  text-decoration: none;
+  padding: 10px;
+  transition: color 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+.navigation a:hover {
+  color: #aaa;  /* Highlight on hover */
 }
 
 .search {
   flex-grow: 1;
   text-align: center;
+}
+
+.search input, .search button {
+  padding: 8px 10px;
+  margin: 0 5px;
 }
 
 .user-profile {
