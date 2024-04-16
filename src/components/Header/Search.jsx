@@ -1,6 +1,7 @@
-import React , { useState } from "react";
+import React, { useState } from "react";
+import { FaFilter } from 'react-icons/fa';
 
-const Search = ()=>{
+const Search = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearchChange = (event) => {
@@ -14,17 +15,23 @@ const Search = ()=>{
     };
     return (
         <div className="search">
-                <form onSubmit={handleSearchSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                    />
-                    <button type="submit">Search</button>
-                </form>
+            <form onSubmit={handleSearchSubmit}>
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                />
+                <button type="submit">Search</button>
+            </form>
+            <div className="filter-icon">
+                <button>
+                <FaFilter/>
+                </button>
+                
             </div>
-        
+        </div>
+
     );
 }
 

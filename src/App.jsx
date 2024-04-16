@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./components/Body/Card.jsx";
 import Header from "./components/Header/Header.jsx"
 import Sidebar from "./components/Sidebar/SideBar.jsx";
@@ -33,25 +33,29 @@ const App = () => {
     };
 
     console.log(posts)
-    
+
     return (
         <>
-            <Header />
             <Sidebar />
+            <Header />
+            <div className="main">
+                
+                {posts.map((val, index, arr) => {
+                    return (
+                        <Card
+                            key={val._id} // Add a unique key for each element in the array
+                            imgSrc="https://picsum.photos/id/10/200/250"
+                            tag={val.tag}
+                            title={val.title}
+                            description={val.description}
+                            location={val.location} />
+                    )
+                })}
 
-            {posts.map((val, index, arr) => {
-                return (
-                    <Card
-                        key={val._id} // Add a unique key for each element in the array
-                        imgSrc={val.image}
-                        tag={val.tag}
-                        title={val.title}
-                        description={val.description}
-                        location={val.location} />
-                )
-            })}
+            </div>
 
-            
+
+
         </>
     )
 }
