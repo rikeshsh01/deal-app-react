@@ -120,48 +120,81 @@ span {
 
 /* Header section css  */
 
+/* Basic styling for the header */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: white;
-  color:black;
+  background: #f8f9fa; /* light grey background */
+  padding: 10px; /* adds padding inside the header */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* adds a subtle shadow */
+}
+.search form {
+  display: flex; /* enables flexbox layout */
+  margin: 0; /* removes margin */
+  width: 100%; /* ensures form takes full width of its container */
+}
+.search input[type="text"] {
+  flex-grow: 1; /* allows input to take up available space */
+  margin-right: 8px; /* adds spacing between input and button */
+  padding: 8px; /* adds padding inside the input field */
+  border: 1px solid #ccc; /* adds border to the input field */
+  border-radius: 4px; /* rounds the corners of the input field */
+}
+.search button {
+  padding: 8px 16px; /* adds padding inside the button */
+  background-color:#555; /* sets a blue background color */
+  color: white; /* sets the text color to white */
+  border: none; /* removes border */
+  border-radius: 4px; /* rounds the corners of the button */
+  cursor: pointer; /* changes cursor to pointer when hovering over button */
+}
+.search button:hover {
+  background-color:#474747; /* changes background on hover */
 }
 
-.logo {
-  font-size: 1.5em;
+
+
+/* side bar css  */
+
+.sidebar {
+  width: 100px; /* Adjusted width */
+  height: 100vh; /* Full-height */
+  position: fixed; /* Sidebar will stay in place when scrolling */
+  left: 0;
+  top: 0;
+  background-color: whitesmoke; /* Dark background color */
+  color: black;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.navigation {
-  display: flex;
-  justify-content: center;  /* Adjusted for a more central alignment */
-  gap: 20px;  /* Adds space between links */
-}
-
-.navigation a {
-  color: rgb(10, 10, 10);
-  text-decoration: none;
-  padding: 10px;
-  transition: color 0.3s ease-in-out;
-  font-weight: bold;
-}
-
-.navigation a:hover {
-  color: #aaa;  /* Highlight on hover */
-}
-
-.search {
-  flex-grow: 1;
+.sidebar .logo {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.search input, .search button {
-  padding: 8px 10px;
-  margin: 0 5px;
+.sidebar .logo img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
 }
 
-.user-profile {
-  flex-grow: 1;
-  text-align: right;
+.sidebar .nav-links {
+  list-style: none;
+  padding: 0;
 }
+
+.sidebar .nav-links li {
+  padding: 10px;
+  margin-bottom: 25px;
+}
+
+.sidebar .nav-links li:hover {
+  background-color: #555; /* Add hover effect */
+}
+
+
+.sidebar .user-profile {
+  position: fixed;
+  bottom: 10px;
+}
+

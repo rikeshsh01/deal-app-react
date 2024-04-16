@@ -72,6 +72,4 @@ const data = [
     }
 ]
 
-const Odata = JSON.stringify(data)
-
-export default Odata;
+export default data;
