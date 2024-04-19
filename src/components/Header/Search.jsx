@@ -14,23 +14,27 @@ const Search = () => {
         console.log("Searching for:", searchQuery);
     };
     return (
-        <div className="search">
-            <form onSubmit={handleSearchSubmit}>
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                />
-                <button type="submit">Search</button>
-            </form>
-            <div className="filter-icon">
-                <button>
-                <FaFilter/>
-                </button>
-                
+        <>
+            <div className="search">
+                <form onSubmit={handleSearchSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    />
+                    <button type="submit">Search</button>
+                </form>
+                <div className="filter-icon">
+                    <button>
+                        <FaFilter />
+                    </button>
+
+                </div>
             </div>
-        </div>
+
+        </>
+
 
     );
 }
