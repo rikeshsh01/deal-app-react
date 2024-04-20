@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "./components/Body/Card.jsx";
 import Header from "./components/Header/Header.jsx"
-import Sidebar from "./components/Sidebar/SideBar.jsx";
+import AddButton from "./components/Body/AddButton.jsx";
 
 
 const App = () => {
@@ -36,19 +36,25 @@ const App = () => {
 
     return (
         <>
-            <Sidebar />
             <Header />
+            <AddButton/>
             <div className="main">
+            
                 
                 {posts.map((val, index, arr) => {
                     return (
                         <Card
                             key={val._id} // Add a unique key for each element in the array
-                            imgSrc="https://picsum.photos/id/10/200/250"
+                            postImage={val.image}
                             tag={val.tag}
                             title={val.title}
                             description={val.description}
-                            location={val.location} />
+                            location={val.location}
+                            userName={val.userDetails.name}
+                            likeCount = {val.likeCount}
+                            profileImage = "https://picsum.photos/1920/1080"
+                            additionalDetails = {val.additionalDetail}
+                            comments = {val.comments} />
                     )
                 })}
 

@@ -23,10 +23,10 @@ const Search = () => {
                         value={searchQuery}
                         onChange={handleSearchChange}
                     />
-                    <button type="submit">Search</button>
+                    <button className="search-button" type="submit">Search</button>
                 </form>
                 <div className="filter-icon">
-                    <button>
+                    <button className="filter-buton">
                         <FaFilter />
                     </button>
 

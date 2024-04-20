@@ -1,258 +1,116 @@
-/* css for card components  */
-.wrapper {
-  height: 420px;
-  width: auto;
-  margin: 10px;
-  border-radius: 7px 7px 7px 7px;
-  /* VIA CSS MATIC https://goo.gl/cIbnS */
-  -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
-  float: left;
+#root {
+  margin: 0px 80px 0px 80px;
 }
-
-.card__image {
-  float: left;
-  height: 420px;
-  width: 327px;
-}
-
-.card__image img {
-  border-radius: 7px 0 0 7px;
-}
-
-.card__info {
-  float: left;
-  height: 420px;
-  width: 327px;
-  border-radius: 0 7px 10px 7px;
-  background-color: #ffffff;
-}
-
-.card__info__text {
-  height: 300px;
-  width: 327px;
-}
-
-.card__info__text h1 {
-  margin: 0 0 0 38px;
-  padding-top: 52px;
-  font-size: 34px;
-  color: #474747;
-}
-
-.card__info__text h1,
-.product__price p {
-  font-family: 'Bentham', serif;
-}
-
-.card__info__text h2 {
-  margin: 0 0 47px 38px;
-  font-size: 13px;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 400;
-  text-transform: uppercase;
-  color: #d2d2d2;
-  letter-spacing: 0.2em;
-}
-
-.card__info__text p {
-  height: 125px;
-  margin: 0 0 0 38px;
-  font-family: 'Playfair Display', serif;
-  color: #8d8d8d;
-  line-height: 1.7em;
-  font-size: 15px;
-  font-weight: lighter;
-  overflow: hidden;
-}
-
-.product__price {
-  height: 103px;
-  width: 327px;
-  margin-top: 17px;
-  position: relative;
-}
-
-.product__price p {
-  display: inline-block;
-  position: absolute;
-  top: 0px;
-  height: 50px;
-  font-family: 'Trocchi', serif;
-  margin: 0 0 0 38px;
-  font-size: 28px;
-  font-weight: lighter;
-  color: #474747;
-}
-
-span {
-  display: inline-block;
-  height: 50px;
-  font-family: 'Suranna', serif;
-  font-size: 34px;
-}
-
-.product__price button {
-  float: right;
-  display: inline-block;
-  height: 50px;
-  width: 176px;
-  margin: 0 40px 0 16px;
-  box-sizing: border-box;
-  border: transparent;
-  border-radius: 60px;
-  font-family: 'Raleway', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #ffffff;
-  background-color: #9cebd5;
-  cursor: pointer;
-  outline: none;
-}
-
-.product__price button:hover {
-  background-color: #79b0a1;
-}
-
 
 /* Header section css  */
-
-/* Basic styling for the header */
+/* Base Styles for the Header */
 .header {
-  background: #f8f9fa;
-  /* light grey background */
-  padding: 10px;
-  /* adds padding inside the header */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* adds a subtle shadow */
-  margin-left: 100px;
-}
-
-.search form {
   display: flex;
-  /* enables flexbox layout */
-  margin: 0;
-  /* removes margin */
-  width: 100%;
-  /* ensures form takes full width of its container */
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e1e1e1;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  border-style: groove;
+  border: 7px;
+  box-shadow: 0px 0px 5px 5px #888888;
 }
 
-.search input[type="text"] {
-  flex-grow: 1;
-  /* allows input to take up available space */
-  margin-right: 8px;
-  /* adds spacing between input and button */
-  padding: 8px;
-  /* adds padding inside the input field */
-  border: 1px solid #ccc;
-  /* adds border to the input field */
-  border-radius: 4px;
-  /* rounds the corners of the input field */
+/* Logo styling */
+.logo img {
+  height: 50px;
+  width: auto;
 }
 
-.search button {
-  padding: 8px 16px;
-  /* adds padding inside the button */
-  background-color: #555;
-  /* sets a blue background color */
-  color: white;
-  /* sets the text color to white */
-  border: none;
-  /* removes border */
-  border-radius: 4px;
-  /* rounds the corners of the button */
-  cursor: pointer;
-  /* changes cursor to pointer when hovering over button */
-}
-
-.search button:hover {
-  background-color: #474747;
-  /* changes background on hover */
-}
-
-.search {
-  display: flex;
-}
-
-
-/* side bar css  */
-
-.sidebar {
-  width: 100px;
-  /* Adjusted width */
-  height: 100vh;
-  /* Full-height */
-  position: fixed;
-  /* Sidebar will stay in place when scrolling */
-  left: 0;
-  top: 0;
-  background-color: whitesmoke;
-  /* Dark background color */
-  color: black;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.sidebar .logo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.sidebar .logo img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.sidebar .nav-links {
+/* Navigation Links */
+.nav-links {
   list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
   padding: 0;
 }
 
-.sidebar .nav-links li {
-  padding: 10px;
-  margin-bottom: 25px;
+.nav-links li {
+  color: grey;
+  padding: 10px 20px;
+  font-weight: bold;
 }
 
-.sidebar .nav-links li:hover {
-  background-color: #555;
-  /* Add hover effect */
+.nav-links li:hover {
+  color: darkgray; /* Change color on hover */
+  cursor: pointer;
 }
 
-
-.sidebar .user-profile {
-  position: fixed;
-  bottom: 10px;
-}
-
-.main {
-  margin-left: 100px;
-  float: left;
-}
-
-.filter-icon {
-  display: inline-block;
-  margin-left: 10px;
-  /* Adjust this value as needed */
-}
-
-/* Optional: Style the filter icon */
-.filter-icon i {
-  color: #555;
-  /* Change color as desired */
-  font-size: 18px;
-  /* Adjust size as needed */
-}
-
-.add-icon {
+/* Search Bar */
+.search {
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
 }
+.search form {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.search input[type="text"] {
+  border: none;
+  padding: 10px 10px;
+  width: 180px;
+  border-radius: 5px;
+}
+
+.search button {
+  background: grey;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.search-button:hover {
+  background: darkgray; /* Darker blue on hover */
+}
+
+.filter-buton:hover{
+  fill:darkgray
+}
+
+/* Filter Icon within the search */
+.filter-icon button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 15px 10px;
+  cursor: pointer;
+}
+
+.filter-icon svg {
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+  fill: gray;
+}
+
+.filter-icon svg:hover {
+  fill: darkgray;
+}
+
+/* User Profile Icon */
+.user-profile svg {
+  fill: gray;
+  cursor: pointer;
+}
+
+.user-profile svg:hover {
+  fill: darkgray; /* Change color on hover */
+}
+
 
 
 
@@ -331,13 +189,293 @@ span {
 
 .modal-content button[type="submit"] {
   display: block;
-  margin: 0 auto; /* Center the button */
+  margin: 0 auto;
+  /* Center the button */
 }
 
 .modal-content select {
-  height: 40px; /* Adjust height as needed */
+  height: 40px;
+  /* Adjust height as needed */
 }
 
 .modal-close-btn:hover {
-  color: red; /* change color on hover */
+  color: red;
+  /* change color on hover */
+}
+
+
+
+/* css for add post section  */
+
+.add-button-wrapper {
+  height: auto;
+    width: 60%;
+    position: relative;
+    left: 290px;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 5px #888888;
+    margin-top: 15px;
+}
+
+.add-icon {
+  display: flex;
+  justify-content: center;
+  margin: 40px 40px;
+  height: 50px;
+  width: auto;
+}
+
+.add-icon-button {
+  border-style: dashed;
+}
+
+
+
+.main {
+  height: auto;
+    width: 60%;
+    position: relative;
+    top: 20px;
+    left: 275px;
+}
+
+
+.wrapper {
+  display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 5px 5px #888888;
+    height: auto;
+    margin: 10px 0 10px 15px;
+}
+
+.card__image img {
+  width: 96%;
+  height: auto;
+  position: relative;
+  top: 0px;
+  border-radius: 10px;
+  left: 15px;
+}
+
+.card__image .slick-track {
+  display: flex;
+}
+
+
+
+.card__info {
+  display: flex;
+    position: relative;
+    top: 10px;
+
+}
+
+.card__title {
+  margin: 0 0 15px 10px;
+  font-size: 20px;
+}
+
+.card__title__text {
+  margin: 0;
+}
+
+
+.card__tag {
+  position: absolute;
+    right: 120px;
+    font-size: 12px;
+
+}
+
+.card__tag__text{
+  border-radius: 5px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+
+.card__description {
+  margin: 10px 0 0px 15px;
+}
+
+.card__description__text{
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+
+
+.card__location {
+  color: #777;
+    position: absolute;
+    right: 25px;
+}
+
+.card__location__text{
+  font-size: 16px;
+}
+
+.product__price {
+  margin: 5px 0 5px 10px;
+  font-size: 14px;
+}
+
+.posted-user img {
+  width: 50px;
+    height: 50px;
+    position: relative;
+    top: 10px;
+    border-radius: 50%;
+}
+
+.posted-user{
+  display: flex;
+    position: relative;
+    left: 15px;
+}
+
+.posted-by {
+  position: relative;
+    top: 8px;
+    left: 8px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+.view__details {
+  /* position: absolute; */
+    right: 0;
+    font-size: 18px;
+    top: 0;
+    margin: 0px 0px 0px 0px;
+}
+
+.activity__section {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.like__button,
+.comment__button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.view__details .see__more {
+  margin: 0;
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+
+
+.additional__details {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 15px 0px 0px;
+
+}
+
+.additional__details table {
+  width: 100%;
+}
+
+.additional__details th {
+  background-color: #f2f2f2;
+  padding: 8px;
+  text-align: left;
+}
+
+.additional__details td {
+  padding: 8px;
+}
+
+.key__head {
+  width: 30%;
+}
+
+
+
+
+
+/* comment section  */
+
+.comment_section {
+  /* display: flex; */
+
+  margin-left: 5px;
+}
+
+.comment_section img {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 5px;
+  border-radius: 50%;
+}
+
+
+
+.comment_section_content{
+  display: flex;
+    border: 1px solid;
+    border-radius: 10px;
+    width: 100%;
+    margin: 0px 15px 10px 5px;
+}
+
+.comment_section_each{
+  display: flex;
+}
+
+.user__and__date{
+  margin: 5px 0 0px 15px;
+}
+
+.comment_posted_by {
+  margin: 0;
+}
+
+.comment_date{
+  margin: 0;
+}
+
+.input__comment img{
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 5px;
+  border-radius: 50%;
+}
+
+.input__comment{
+  display: flex;
+    margin-left: 5px;
+}
+
+.input__comment input{
+    margin-left: 45px;
+width: 100%;
+border-radius: 10px;
+}
+
+.input__comment svg{
+  position: relative;
+  right: 25px;
+  top: 10px;
 }

@@ -1,30 +1,143 @@
-import React from "react";
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaMapMarkerAlt, FaThumbsUp, FaComment,FaArrowRight  } from 'react-icons/fa';
+import Slider from "react-slick";
 
 function Card(props) {
-    console.log(props)
+    console.log(props.comments)
+    const [isOpenAdditionalSection, setIsOpenAdditionalSection] = useState(false);
+    const [isOpenCommentSection, setIsOpenCommentSection] = useState(false);
+
+    const handleClickSeeMore = () => {
+        setIsOpenAdditionalSection(!isOpenAdditionalSection);
+    };
+
+    const ClickComment = () => {
+        setIsOpenCommentSection(!isOpenCommentSection);
+    }
+    function SampleNextArrow(props) {
+        const { className, style } = props;
+        return (
+            <div
+                className={className}
+                style={{ ...style }}
+            />
+        );
+    }
+
+    function SamplePrevArrow(props) {
+        const { className, style } = props;
+        return (
+            <div
+                className={className}
+                style={{ ...style }}
+            />
+        );
+    }
+
+    var settings = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        centerMode: true,
+        centerPadding: "10px",
+        nextArrow: <SampleNextArrow className="ABC" />,
+        prevArrow: <SamplePrevArrow />
+    };
+
     return (
-    <>
         <div className="wrapper">
+            <div className="posted-user">
+                <img src={props.profileImage} alt="profileImage" />
+                <p className="posted-by"> {props.userName} </p>
+                <div className="card__tag">
+                    <h2 className="card__tag__text" >{props.tag}</h2>
+                </div>
+                <div className="card__location">
+                    <h2 className="card__location__text">{props.location} <FaMapMarkerAlt size={15} color="red" /> </h2>
+                </div>
+            </div>
+            <div className="card__description">
+                <p className="card__description__text">{props.description} </p>
+                <div className="view__details" onClick={handleClickSeeMore}>
+                    <p className="see__more">{isOpenAdditionalSection ? 'See less...' : 'See more...'}</p>
+                </div>
+                {isOpenAdditionalSection && (
+                    <div className="additional__details">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th className="key__head">Key</th>
+                                    <th className="value__head">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {props.additionalDetails.map((detail, index) => (
+                                    <tr key={index}>
+                                        <td className="details__key">{detail.key} :</td>
+                                        <td className="details__value">{detail.value} npr</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+
+                    </div>
+                )}
+            </div>
             <div className="card__image">
-                <img src={props.imgSrc} alt="Hello" height="420" width="327" />
+                {props.postImage.length === 1 ? (
+                    // If only one image, display it directly
+                    <img src={props.postImage[0].url} alt="Hello" />
+                ) : (
+                    // If multiple images, use a slider
+                    <Slider {...settings}>
+                        {props.postImage.map((image, index) => (
+                            <img key={index} src={image.url} alt={`${index + 1}`} />
+                        ))}
+                    </Slider>
+                )}
+            </div>
+            <div className="activity__section">
+                <button className="like__button"><FaThumbsUp />  Like</button>
+                <button className="comment__button" onClick={ClickComment}><FaComment />  Comment</button>
             </div>
             <div className="card__info">
-                <div className="card__info__text">
-                    <h1 className="card__title">{props.title}</h1>
-                    <h2 className="card__tag" >{props.tag}</h2>
-                    <p className="card__description">{props.description} </p>
-                    <h2 className="card__location"><FaMapMarkerAlt size={20} color="red"/>{props.location}</h2>
-                </div>
-                <div className="product__price">
-                    <p><span>78</span>$</p>
-                    <button type="button">View Details</button>
+                <div className="card__title">
+                    <h2 className="card__title__text">{props.title}</h2>
                 </div>
             </div>
-        </div>
+            {isOpenCommentSection && (
+                <>
+                    <div className="comment_section">
+                        {props.comments.map((comment, index) => (
+                            <div key={index} className="comment_section_each">
+                                <img
+                                    src={comment.userDetails.image ? comment.userDetails.image[0].url : "http://localhost:8080/images/default.jpg"}
+                                    alt="userphoto"
+                                />
+                                <div className="user__and__date">
+                                    <p className="comment_posted_by">{comment.userDetails.name}</p>
+                                    <p className="comment_date">date</p>
+                                </div>
 
-    </>
-    )
+                                <div className="comment_section_content">
+                                    <p className="comment_content">{comment.content}</p>
+                                </div>
+                            </div>
+                        ))}
+                        
+
+                    </div>
+                    <div className="input__comment">
+                            <img src="http://localhost:8080/images/default.jpg" alt="pht" />
+                            <input type="text" value="" />
+                            <FaArrowRight size={15}/>
+                        </div>
+                </>
+            )}
+        </div>
+    );
 }
 
 export default Card;

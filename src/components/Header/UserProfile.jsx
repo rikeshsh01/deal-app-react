@@ -4,7 +4,7 @@ const UserProfile = () => {
     return (
         <>
             <div className="user-profile">
-                <FaUser size={30}/> {/* Adding user icon */}
+                <FaUser size={25}/> {/* Adding user icon */}
             </div>
         </>
     )
