@@ -14,11 +14,11 @@ const App = () => {
     }, []);
 
     const fetchData = async () => {
+        
         try {
-            const response = await fetch("http://localhost:8080/api/post", {
+            const response = await fetch("http://10.0.0.37:8080/api/post", {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json",
                     // "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxYWIwM2EzZmJjZDM1MDJkMDA4M2Q3In0sImlhdCI6MTcxMzAyNTM0OH0.ALYgsPV7mpffGgtwEdy7wNuVJvLBBnHW69vjriaoGHQ"
                 }
             });
@@ -39,8 +39,6 @@ const App = () => {
             <Header />
             <AddButton/>
             <div className="main">
-            
-                
                 {posts.map((val, index, arr) => {
                     return (
                         <Card

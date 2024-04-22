@@ -15,10 +15,15 @@ export default function Modal({ isOpen, onClose }) {
     });
 
     const [map, setMap] = useState(null); // State to hold the map instance
+    const [tagData, setTagData] = useState(null);
+    const [subtagData, setSubtagData] = useState(null); // State to hold subtag data
 
     // useEffect to initialize the map once the component is mounted
     useEffect(() => {
         if (isOpen) {
+
+            fetcTagData();
+
             const nepalCoordinates = [27.7293, 85.3343]; // Coordinates of Nepal
             const newMap = L.map('map').setView(nepalCoordinates, 10);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -48,7 +53,7 @@ export default function Modal({ isOpen, onClose }) {
                 const data = await response.json();     //location name
 
                 // console.log(data.data.generalName)
-         
+
 
                 // If marker exists, remove it from the map
                 if (marker) {
@@ -63,14 +68,19 @@ export default function Modal({ isOpen, onClose }) {
                     ...prevState,
                     latitude: lat.toFixed(6), // Round latitude to 6 decimal places
                     longitude: lng.toFixed(6), // Round longitude to 6 decimal places
-                    location:data.data.generalName
+                    location: data.data.generalName
                 }));
             });
         }
     }, [isOpen]);
 
 
-
+    // useEffect to fetch subtags when a tag is selected
+    useEffect(() => {
+        if (formData.tag) {
+            fetchSubtagData(formData.tag);
+        }
+    }, [formData.tag]);
 
     // Handle form input changes
     const handleChange = (e) => {
@@ -81,14 +91,87 @@ export default function Modal({ isOpen, onClose }) {
         }));
     };
 
-    // Handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add your logic to handle form submission
-        console.log(formData);
+        const formDataToSend = new FormData(); // Create a new FormData object
+        const fileInput = document.querySelector('input[type="file"]');
+        const files = fileInput.files;
+    
+        // Append form data to formDataToSend
+        formDataToSend.append('title', formData.title);
+        formDataToSend.append('description', formData.description);
+        formDataToSend.append('tagId', formData.tag);
+        formDataToSend.append('subtagId', formData.subtag);
+        formDataToSend.append('latitude', formData.latitude);
+        formDataToSend.append('longitude', formData.longitude);
+        formDataToSend.append('location', formData.location);
+    
+        // Append files
+        for (let i = 0; i < files.length; i++) {
+            formDataToSend.append('image', files[i]);
+        }
+        console.log(formData.tag)
+        console.log(formData.subtag)
+    
+        console.log([...formDataToSend.entries()]);
+
+    
+        // Uncomment the fetch code to send the formData to the server
+        
+        const response = await fetch('http://10.0.0.37:8080/api/post', {
+            method: 'POST',
+            body: formDataToSend,
+            headers: {
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYyNWYyNmI2NGY2YmQ4ZTI2ZGNjNTEyIiwicm9sZUlkIjoiNjYxZWFiMjRmODRjODViYmNiNWRhZGIwIn0sImlhdCI6MTcxMzc2Mjk3OH0.Kb5DwAPQ3ySKkWnP3jVFjQBZwbBzum6YvlmxQsHUzRQ"
+            },
+        });
+
     };
+    
+    
 
     if (!isOpen) return null;
+
+    const fetcTagData = async () => {
+
+        try {
+            const response = await fetch("http://10.0.0.37:8080/api/tag", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYyNWYyNmI2NGY2YmQ4ZTI2ZGNjNTEyIiwicm9sZUlkIjoiNjYxZWFiMjRmODRjODViYmNiNWRhZGIwIn0sImlhdCI6MTcxMzc2Mjk3OH0.Kb5DwAPQ3ySKkWnP3jVFjQBZwbBzum6YvlmxQsHUzRQ"
+                }
+            });
+            if (!response.ok) {
+                throw new Error("Failed to fetch data");
+            }
+            const data = await response.json();
+            setTagData(data.data); // Update state with fetched data
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    // Fetch subtag data based on tag ID
+    const fetchSubtagData = async (tagId) => {
+        try {
+            const response = await fetch(`http://10.0.0.37:8080/api/subtag/${tagId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYyNWYyNmI2NGY2YmQ4ZTI2ZGNjNTEyIiwicm9sZUlkIjoiNjYxZWFiMjRmODRjODViYmNiNWRhZGIwIn0sImlhdCI6MTcxMzc2Mjk3OH0.Kb5DwAPQ3ySKkWnP3jVFjQBZwbBzum6YvlmxQsHUzRQ"
+                }
+            });
+            if (!response.ok) {
+                throw new Error("Failed to fetch subtag data");
+            }
+            const data = await response.json();
+            setSubtagData(data.data); // Update state with fetched subtag data
+        } catch (error) {
+            console.error("Error fetching subtag data:", error);
+        }
+    };
+
 
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -100,11 +183,20 @@ export default function Modal({ isOpen, onClose }) {
                         <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} />
                         <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange}></textarea>
                         <select name="tag" value={formData.tag} onChange={handleChange}>
-                            <option value="tag1">Tag 1</option>
-                            <option value="tag2">Tag 2</option>
-                            <option value="tag3">Tag 3</option>
-                            {/* Add more options as needed */}
+                            <option value="">Select Tag</option>
+                            {tagData && tagData.map(tag => (
+                                <option key={tag._id} value={tag._id}>{tag.title}</option>
+                            ))}
                         </select>
+                        {subtagData && (
+                            <select name="subtag" value={formData.subtag} onChange={handleChange}>
+                                <option value="">Select Subtag</option>
+                                {subtagData.map(subtag => (
+                                    <option key={subtag._id} value={subtag._id}>{subtag.title}</option>
+                                ))}
+                            </select>
+                        )}
+
                         <input type="file" name="file" accept="image/*, .pdf, .doc, .docx" multiple />
                         <div id="map" style={{ height: '300px', width: '100%' }}></div>
                         <input type="text" name="latitude" placeholder="Latitude" value={formData.latitude} onChange={handleChange} />
