@@ -7,6 +7,7 @@ function Card(props) {
     console.log(props.comments)
     const [isOpenAdditionalSection, setIsOpenAdditionalSection] = useState(false);
     const [isOpenCommentSection, setIsOpenCommentSection] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
 
     const handleClickSeeMore = () => {
         setIsOpenAdditionalSection(!isOpenAdditionalSection);
@@ -19,13 +20,26 @@ function Card(props) {
 
     var settings = {
         fade: true,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         waitForAnimate: false,
+        beforeChange: (current, next) => setCurrentSlide(next),  // Update current slide index
 
     };
+     // Conditional rendering of arrows based on the current slide index
+     const PrevArrow = ({ onClick }) => (
+        currentSlide > 0 && <GoArrowLeft size={35} className="slick-prev" onClick={onClick} />
+    );
+
+    const NextArrow = ({ onClick }) => (
+        currentSlide < props.postImage.length - 1 && <GoArrowRight size={35} className="slick-next" onClick={onClick} />
+    );
+
+    // Add customized arrow components to settings
+    settings.prevArrow = <PrevArrow />;
+    settings.nextArrow = <NextArrow />;
 
     return (
         <div className="wrapper">
@@ -46,15 +60,13 @@ function Card(props) {
                     <img src={props.postImage[0].url} alt="img" />
                 ) : (
                     // If multiple images, use a slider
-                    <Slider
-                        prevArrow={<GoArrowLeft size={35} className="slick-prev" />}
-                        nextArrow={<GoArrowRight size={35} className="slick-next" />}
-                        {...settings}
-                    >
-                        {props.postImage.map((image, index) => (
-                            <img key={index} src={image.url} alt={`${index + 1}`} />
-                        ))}
-                    </Slider>
+                    <Slider {...settings}>
+                    {props.postImage.map((image, index) => (
+                        <div key={index}>
+                            <img src={image.url} alt={`${index + 1}`} />
+                        </div>
+                    ))}
+                </Slider>
                 )}
             </div>
 
