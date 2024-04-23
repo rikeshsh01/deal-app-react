@@ -4,6 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 export default function Modal({ isOpen, onClose }) {
+
     // State variables to store form data
     const [formData, setFormData] = useState({
         title: '',
@@ -48,7 +49,7 @@ export default function Modal({ isOpen, onClose }) {
             newMap.on('click', async (e) => {
                 const { lat, lng } = e.latlng; // Get latitude and longitude of clicked point
 
-                const response = await fetch(`https://route-init.gallimap.com/api/v1/reverse/generalReverse?accessToken=83a5ccd3-fc18-4eb3-8d98-a734446a4c2a&lat=${lat}&lng=${lng}`);
+                const response = await fetch(`https://route-init.gallimap.com/api/v1/reverse/generalReverse?accessToken=${process.env.REACT_APP_GALLI_MAP_ACCESS_TOKEN}&lat=${lat}&lng=${lng}`);
                 // const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`);
                 const data = await response.json();     //location name
 
@@ -96,7 +97,7 @@ export default function Modal({ isOpen, onClose }) {
         const formDataToSend = new FormData(); // Create a new FormData object
         const fileInput = document.querySelector('input[type="file"]');
         const files = fileInput.files;
-    
+
         // Append form data to formDataToSend
         formDataToSend.append('title', formData.title);
         formDataToSend.append('description', formData.description);
@@ -105,41 +106,41 @@ export default function Modal({ isOpen, onClose }) {
         formDataToSend.append('latitude', formData.latitude);
         formDataToSend.append('longitude', formData.longitude);
         formDataToSend.append('location', formData.location);
-    
+
         // Append files
         for (let i = 0; i < files.length; i++) {
             formDataToSend.append('image', files[i]);
         }
         console.log(formData.tag)
         console.log(formData.subtag)
-    
+
         console.log([...formDataToSend.entries()]);
 
-    
+
         // Uncomment the fetch code to send the formData to the server
-        
-        const response = await fetch('http://10.0.0.37:8080/api/post', {
+
+        const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/post`, {
             method: 'POST',
             body: formDataToSend,
             headers: {
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYyNWYyNmI2NGY2YmQ4ZTI2ZGNjNTEyIiwicm9sZUlkIjoiNjYxZWFiMjRmODRjODViYmNiNWRhZGIwIn0sImlhdCI6MTcxMzc2Mjk3OH0.Kb5DwAPQ3ySKkWnP3jVFjQBZwbBzum6YvlmxQsHUzRQ"
+                "auth-token": process.env.REACT_APP_AUTH_TOKEN
             },
         });
+        // isClose();
 
     };
-    
-    
+
+
 
     if (!isOpen) return null;
 
     const fetcTagData = async () => {
-
         try {
-            const response = await fetch("http://10.0.0.37:8080/api/tag", {
+            const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/tag`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYyNWYyNmI2NGY2YmQ4ZTI2ZGNjNTEyIiwicm9sZUlkIjoiNjYxZWFiMjRmODRjODViYmNiNWRhZGIwIn0sImlhdCI6MTcxMzc2Mjk3OH0.Kb5DwAPQ3ySKkWnP3jVFjQBZwbBzum6YvlmxQsHUzRQ"
+                    "auth-token": process.env.REACT_APP_AUTH_TOKEN
                 }
             });
             if (!response.ok) {
@@ -155,11 +156,11 @@ export default function Modal({ isOpen, onClose }) {
     // Fetch subtag data based on tag ID
     const fetchSubtagData = async (tagId) => {
         try {
-            const response = await fetch(`http://10.0.0.37:8080/api/subtag/${tagId}`, {
+            const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/subtag/${tagId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYyNWYyNmI2NGY2YmQ4ZTI2ZGNjNTEyIiwicm9sZUlkIjoiNjYxZWFiMjRmODRjODViYmNiNWRhZGIwIn0sImlhdCI6MTcxMzc2Mjk3OH0.Kb5DwAPQ3ySKkWnP3jVFjQBZwbBzum6YvlmxQsHUzRQ"
+                    "auth-token": process.env.REACT_APP_AUTH_TOKEN
                 }
             });
             if (!response.ok) {

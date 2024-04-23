@@ -114,7 +114,7 @@ function Card(props) {
                         {props.comments.map((comment, index) => (
                             <div key={index} className="comment_section_each">
                                 <img
-                                    src={comment.userDetails.image ? comment.userDetails.image[0].url : "http://localhost:8080/images/default.jpg"}
+                                    src={comment.userDetails.image ? comment.userDetails.image[0].url : `http://localhost:8080/images/default.jpg`}
                                     alt="userphoto"
                                 />
                                 <div className="user__and__date">
