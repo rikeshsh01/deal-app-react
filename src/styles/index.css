@@ -104,6 +104,42 @@
   fill: gray;
 }
 
+.user-profile {
+  position: relative; /* Ensure relative positioning for the user-profile */
+}
+
+.user-profile .profile-list {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px); /* Position just below user-profile */
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile:hover .profile-list {
+  display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    width: 100px;
+    height: auto;
+    list-style: none;
+    top: 25px;
+    border-radius: 10px;
+}
+
+.profile-list-li{
+  padding: 5px;
+
+}.profile-list-li button {
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+
 
 
 
@@ -113,7 +149,7 @@
   padding: 20px;
   border-radius: 8px;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  width: 60%;
+  width: 50%;
   height: auto;
   /* Set maximum width if screen size is larger */
 }
@@ -238,14 +274,7 @@
     padding: 0 0 15px 0;
 }
 
-.slick-slide img,
-.card__image img  {
-  position: relative;
-  border-radius: 10px;
-  height: 450px;
-  object-fit: cover;
-  width: 100%;
-}
+
 
 .slick-dots{
   display: flex !important;
@@ -273,6 +302,12 @@
 .slick-slide img {
   width: 100%;
   height: auto; 
+  position: relative;
+  border-radius: 10px;
+  height: 450px;
+  object-fit: cover;
+  width: 59rem;
+  left: -29px;
 }
 
 /* Ensure consistent sizing for slider */
@@ -282,6 +317,15 @@
 
 .slick-next {
   right: 0; /* Position next button on the right */
+}
+
+.card__image img  {
+  position: relative;
+  border-radius: 10px;
+  height: 450px;
+  object-fit: cover;
+  width: 59rem;
+  left: -29px;
 }
 
 

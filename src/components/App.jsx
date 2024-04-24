@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "../pages/Contact.js";
 import MarketPlace from "../pages/MarketPlace.js";
 import Login from "../pages/Login.js";
+import SignUp from "../pages/SignUp.js";
+import VerifyEmail from "../pages/VerifyEmail.js";
+
 
 const App = () => {
     return (
@@ -16,6 +19,8 @@ const App = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/verifyemail/:userId" element={<VerifyEmail />} />
             </Routes>
         </BrowserRouter>
     );

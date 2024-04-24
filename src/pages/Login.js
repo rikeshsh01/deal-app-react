@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {Link, useLocation, useNavigate } from 'react-router-dom';
 import Modals from '../components/common/Modals.jsx';
 
 const Login = () => {
@@ -27,43 +27,38 @@ const Login = () => {
     };
 
 
+
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        const formDataToSend = prepareFormDataToSend();
-        console.log(...formDataToSend.entries());
+        const requestData = {
+            email: credential.email,
+            password: credential.password
+        };
 
-        // API Call
-        const response = await fetch("http://localhost:8080/api/login", {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            headers: {
-                // 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: formDataToSend
-        });
+        try {
+            // API Call
+            let response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData),
+            });
+            const json = await response.json();
+            console.log(json.data.authToken)
+            let userId = json.data.userId
 
-        console.log(response, "response")
-        
-        const json = await response.json();
-        console.log(json,"json")
-
-        // if (json.success) {
-        //     localStorage.setItem("token",json.authToken)
-        //     navigate("/");
-        //     props.alertMessage("Logged in Successfully","success")
-        // }
-        // else{
-        //     props.alertMessage("Invalid Cred","danger")
-        // }
-        // await submitFormData(formDataToSend);
-        // onClose();
-    };
-
-    const prepareFormDataToSend = () => {
-        const formDataToSend = new FormData();
-        formDataToSend.append('email', credential.email);
-        formDataToSend.append('password', credential.password);
-        return formDataToSend;
+            // Handle response data
+            if (json.data.authToken && json.data.authToken !== "") {
+                localStorage.setItem("authToken", json.data.authToken);
+                navigate("/");
+            } else {
+                navigate(`/verifyemail/${userId}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle error
+        }
     };
 
     return (
@@ -75,27 +70,28 @@ const Login = () => {
                 onSubmit={handleLoginSubmit}
             >
                 <form onSubmit={handleLoginSubmit}>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    required
-                    value={credential.email}
-                    onChange={handleOnChange}
-                />
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        required
+                        value={credential.email}
+                        onChange={handleOnChange}
+                    />
 
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    required
-                    value={credential.password}
-                    onChange={handleOnChange}
-                />
-                <button type="submit">Submit</button>
-                    </form>
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        value={credential.password}
+                        onChange={handleOnChange}
+                    />
+                    <button type="submit">Login</button>
+                    <p>Forget password? <Link>Reset now</Link></p>
+                </form>
             </Modals>
         </>
     );

@@ -13,10 +13,11 @@ const Main = ()=>{
         const fetchData = async () => {
             
             try {
+                let authToken = localStorage.getItem("authToken")
                 const response = await fetch("http://localhost:8080/api/post", {
                     method: "GET",
                     headers: {
-                        "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYxYWIwM2EzZmJjZDM1MDJkMDA4M2Q3In0sImlhdCI6MTcxMzAyNTM0OH0.ALYgsPV7mpffGgtwEdy7wNuVJvLBBnHW69vjriaoGHQ"
+                        "auth-token": authToken
                     }
                 });
                 if (!response.ok) {

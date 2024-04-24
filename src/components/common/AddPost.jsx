@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
-import Modal from "./Modal";
 import Modals from "./Modals"
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -91,7 +90,7 @@ const AddPost = () => {
             e.preventDefault();
             const formDataToSend = prepareFormDataToSend();
             await submitFormData(formDataToSend);
-            // onClose();
+            // handleModalClose();
         };
 
         const prepareFormDataToSend = () => {
@@ -112,22 +111,24 @@ const AddPost = () => {
         };
 
         const submitFormData = async (formDataToSend) => {
+            let authToken = localStorage.getItem("authToken")
             await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/post`, {
                 method: 'POST',
                 body: formDataToSend,
                 headers: {
-                    "auth-token": process.env.REACT_APP_AUTH_TOKEN
+                    "auth-token": authToken
                 },
             });
         };
 
         const fetchTagData = async () => {
             try {
+                let authToken = localStorage.getItem("authToken")
                 const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/tag`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "auth-token": process.env.REACT_APP_AUTH_TOKEN
+                        "auth-token": authToken
                     }
                 });
                 if (!response.ok) {
@@ -142,11 +143,12 @@ const AddPost = () => {
 
         const fetchSubtagData = async (tagId) => {
             try {
+                let authToken = localStorage.getItem("authToken")
                 const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/subtag/${tagId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
-                        "auth-token": process.env.REACT_APP_AUTH_TOKEN
+                        "auth-token": authToken
                     }
                 });
                 if (!response.ok) {
