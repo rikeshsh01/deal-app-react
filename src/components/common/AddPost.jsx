@@ -90,7 +90,7 @@ const AddPost = () => {
             e.preventDefault();
             const formDataToSend = prepareFormDataToSend();
             await submitFormData(formDataToSend);
-            // handleModalClose();
+            handleModalClose();
         };
 
         const prepareFormDataToSend = () => {

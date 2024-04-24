@@ -67,7 +67,7 @@ const Login = () => {
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
                 title="Login"
-                onSubmit={handleLoginSubmit}
+                customClassName="modal-for-auth"
             >
                 <form onSubmit={handleLoginSubmit}>
                     <label htmlFor="email">Email:</label>
@@ -90,7 +90,12 @@ const Login = () => {
                         onChange={handleOnChange}
                     />
                     <button type="submit">Login</button>
-                    <p>Forget password? <Link>Reset now</Link></p>
+                    <p className='forget-password'>Forget password? <Link>Reset now</Link></p>
+                    <div className='new-account-button-container'>
+                    <button className='new-account-button'><Link to="/signup">Create new account</Link></button>
+
+                    </div>
+
                 </form>
             </Modals>
         </>

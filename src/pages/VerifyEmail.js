@@ -51,7 +51,7 @@ const VerifyEmail = () => {
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
                 title="Verify Email"
-                onSubmit={handleLoginSubmit}
+                customClassName = "modal-for-auth"
             >
                 <form onSubmit={handleLoginSubmit}>
                     <label htmlFor="verifyemail">Verification Code:</label>

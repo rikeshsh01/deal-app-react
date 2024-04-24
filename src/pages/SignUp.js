@@ -66,8 +66,8 @@ const Login = () => {
             <Modals
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
-                title="Login"
-                onSubmit={handleSignUpSubmit}
+                title="Sign up"
+                customClassName = "modal-for-auth"
             >
                 <form onSubmit={handleSignUpSubmit}>
                 <label htmlFor="email">Name:</label>

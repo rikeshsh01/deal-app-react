@@ -1,22 +1,23 @@
-import React from "react";
-import { CiSearch } from "react-icons/ci";
-import { FaUserCircle } from "react-icons/fa";
+import React, { useEffect } from "react";
 import Header from "../components/layouts/Header";
+import { useNavigate } from "react-router-dom";
 
+const Home = () => {
+  const authToken = localStorage.getItem('authToken');
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!authToken) {
+      navigate('/login');
+    }
+  }, [authToken, navigate]);
 
-// import Header from "../components/layouts/Header.jsx"
-
-const Home = (props) => {
-
-    return (
-        <>
-        <Header/>
-            This is home
-
-        </>
-
-    )
-}
+  return (
+    <>
+      <Header />
+      This is home
+    </>
+  );
+};
 
 export default Home;
