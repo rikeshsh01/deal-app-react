@@ -13,102 +13,95 @@
     width: 80%;
 }
 
-/* Logo styling */
-.logo img {
-  height: 50px;
-  width: auto;
+
+
+/* new nav  */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Navigation Links */
-.nav-links {
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.logo img {
+  max-width: 100px;
+  height: auto;
+}
+
+.nav {
   list-style: none;
   display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
 }
 
-.nav-links li {
-  padding: 10px 20px;
-  font-weight: bold;
+.nav li {
+  margin-right: 20px;
 }
 
-/* Target the Link component */
-.nav-links a {
-  color: grey;
+.nav li:last-child {
+  margin-right: 0;
+}
+
+.nav a {
   text-decoration: none;
+  color: #666;
+  transition: color 0.3s ease;
+
+  font-size: 15px;
+
+  letter-spacing: 1px;
+  line-height: 40px;
+  font-weight: 600;
 }
 
-/* Change color on hover */
-.nav-links a:hover {
-  color: darkgray;
+.nav a:hover {
+  color: #333;
 }
 
-/* Search Bar */
-.search {
+.nav-extras {
   display: flex;
-}
-.search form {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 5px;
-}
-
-.search input[type="text"] {
-  border: none;
-  padding: 10px 10px;
-  width: 180px;
-  border-radius: 5px;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 5px 5px;
+    width: 250px;
+    height: 30px;
 }
 
-.search button {
-  background: grey;
-    color: white;
+
+.search-input {
+  padding: 5px 5px;
     border: none;
-    padding: 10px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 5px;
+    position: relative;
+    width: 84%;
+    border-radius: 10px;
+    font-family: sans-serif;
+    font-size: 15px;
+    outline: none;
+    background-color: #f8f9fa;
 }
 
-.search-button:hover {
-  background: darkgray; /* Darker blue on hover */
+.search-form button{
+  border: 0;
+    background-color: grey;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    color: white;
 }
 
-.filter-buton:hover{
-  fill:darkgray
+.search-form{
+  position: relative;
+  width: 100%;
 }
 
-/* Filter Icon within the search */
-.filter-icon button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 15px 10px;
-  cursor: pointer;
-}
-
-.filter-icon svg {
-  height: 20px;
-  width: 20px;
-  vertical-align: middle;
+.user-profile svg{
   fill: gray;
-}
-
-.filter-icon svg:hover {
-  fill: darkgray;
-}
-
-/* User Profile Icon */
-.user-profile svg {
-  fill: gray;
-  cursor: pointer;
-}
-
-.user-profile svg:hover {
-  fill: darkgray; /* Change color on hover */
 }
 
 
@@ -207,31 +200,22 @@
 
 /* css for add post section  */
 
-.add-button-wrapper {
-  height: auto;
-    width: 60%;
-    position: relative;
-    /* left: 290px; */
+.add-button-wrapper{
+  position: fixed;
+    bottom: 30px;
+    right: 120px;
+    background-color: gray;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
-    border-radius: 5px;
-    /* box-shadow: 0px 0px 5px 5px #888888; */
-    margin-top: 15px;
-}
-
-.add-icon {
-  display: flex;
-  justify-content: center;
-  margin: 40px 40px;
-  height: 50px;
-  width: auto;
-}
-
-.add-icon-button {
-  border-style: dashed;
+    align-items: center;
+    border-radius: 50%;
 }
 
 
+
+/* main section  */
 
 .main {
   height: auto;
@@ -240,7 +224,6 @@
     top: 10px;
     /* left: 275px; */
 }
-
 
 .wrapper {
   display: flex;
@@ -258,10 +241,8 @@
 .slick-slide img,
 .card__image img  {
   position: relative;
-  /* top: 0px; */
   border-radius: 10px;
-  /* left: 0px; */
-  height: 450px; /* Set your desired height */
+  height: 450px;
   object-fit: cover;
   width: 100%;
 }
@@ -277,31 +258,31 @@
   display: flex;
 }
 
-.slick-prev, .slick-next {
-  position: relative;
-  /* top: 50%;
-  transform: translateY(-50%); */
-  z-index: 1000; /* Ensure it's above other elements */
+/* Adjust slider controls */
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%); /* Center vertically */
+  z-index: 1000;
+  background-color: grey;
+  border-radius: 20px;
 }
 
-.slick-prev {
-  left: 20px;
-    top: 16rem;
-    background: darkgray;
-    color: white;
-    border-radius: 25px;
-    box-shadow: 0px 0px 5px 5px #888888;
+/* Ensure consistent sizing for images */
+.slick-slide img {
+  width: 100%;
+  height: auto; 
+}
+
+/* Ensure consistent sizing for slider */
+.slick-slider {
+  position: relative;
 }
 
 .slick-next {
-  top: -15rem;
-    left: 52rem;
-    background: darkgray;
-    color: white;
-    border-radius: 25px;
-    box-shadow: 0px 0px 5px 5px #888888;
+  right: 0; /* Position next button on the right */
 }
-
 
 
 
@@ -520,93 +501,4 @@ border-radius: 10px;
 
 
 
-/* new nav  */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
-}
-
-.logo img {
-  max-width: 100px;
-  height: auto;
-}
-
-.nav {
-  list-style: none;
-  display: flex;
-}
-
-.nav li {
-  margin-right: 20px;
-}
-
-.nav li:last-child {
-  margin-right: 0;
-}
-
-.nav a {
-  text-decoration: none;
-  color: #333;
-  transition: color 0.3s ease;
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  line-height: 40px;
-}
-
-.nav a:hover {
-  color: #666;
-}
-
-.nav-extras {
-  display: flex;
-    align-items: center;
-    border: 1px solid;
-    border-radius: 20px;
-    padding: 5px 5px;
-    width: 250px;
-    height: 30px;
-}
-
-
-.search-input {
-  padding: 5px 5px;
-    border: none;
-    background-repeat: no-repeat;
-    background-position: 5px center;
-    background-size: 20px;
-    position: relative;
-    width: 84%;
-    border-radius: 10px;
-    font-family: auto;
-    font-size: 15px;
-    outline: none;
-}
-
-.search-form button{
-  border: 0;
-    background-color: grey;
-    width: 30px;
-    height: 30px;
-    border-radius: 50px;
-    color: white;
-}
-
-.search-form{
-  position: relative;
-  width: 100%;
-}
-
-.user-profile {
-  /* Add styling for user profile section */
-}
 

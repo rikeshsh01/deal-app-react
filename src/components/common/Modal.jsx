@@ -4,8 +4,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 export default function Modal({ isOpen, onClose }) {
-
-    // State variables to store form data
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -15,75 +13,60 @@ export default function Modal({ isOpen, onClose }) {
         location: ''
     });
 
-    const [map, setMap] = useState(null); // State to hold the map instance
+    const [map, setMap] = useState(null);
     const [tagData, setTagData] = useState(null);
-    const [subtagData, setSubtagData] = useState(null); // State to hold subtag data
+    const [subtagData, setSubtagData] = useState(null);
 
-    // useEffect to initialize the map once the component is mounted
     useEffect(() => {
         if (isOpen) {
-
-            fetcTagData();
-
-            const nepalCoordinates = [27.7293, 85.3343]; // Coordinates of Nepal
-            const newMap = L.map('map').setView(nepalCoordinates, 10);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-            }).addTo(newMap);
-
-            setMap(newMap); // Set the map instance in state
-
-            // Custom marker icon
-            const customIcon = L.icon({ // Define marker icon
-                iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-                iconSize: [25, 41], // Size of the icon
-                iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
-                popupAnchor: [1, -34] // Point from which the popup should open relative to the iconAnchor
-
-            });
-
-            // Initialize marker as null
-            let marker = null;
-
-            // Add click event listener to the map
-            newMap.on('click', async (e) => {
-                const { lat, lng } = e.latlng; // Get latitude and longitude of clicked point
-
-                const response = await fetch(`https://route-init.gallimap.com/api/v1/reverse/generalReverse?accessToken=${process.env.REACT_APP_GALLI_MAP_ACCESS_TOKEN}&lat=${lat}&lng=${lng}`);
-                // const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`);
-                const data = await response.json();     //location name
-
-                // console.log(data.data.generalName)
-
-
-                // If marker exists, remove it from the map
-                if (marker) {
-                    newMap.removeLayer(marker);
-                }
-
-                // Add a marker to the clicked location with custom icon
-                marker = L.marker([lat, lng], { icon: customIcon }).addTo(newMap);
-
-                // Update form data with the clicked coordinates
-                setFormData(prevState => ({
-                    ...prevState,
-                    latitude: lat.toFixed(6), // Round latitude to 6 decimal places
-                    longitude: lng.toFixed(6), // Round longitude to 6 decimal places
-                    location: data.data.generalName
-                }));
-            });
+            initializeMap();
+            fetchTagData();
         }
     }, [isOpen]);
 
-
-    // useEffect to fetch subtags when a tag is selected
     useEffect(() => {
         if (formData.tag) {
             fetchSubtagData(formData.tag);
         }
     }, [formData.tag]);
 
-    // Handle form input changes
+    const initializeMap = () => {
+        const nepalCoordinates = [27.7293, 85.3343];
+        const newMap = L.map('map').setView(nepalCoordinates, 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(newMap);
+        setMap(newMap);
+
+        let marker = null;
+        newMap.on('click', async (e) => {
+            const { lat, lng } = e.latlng;
+            const data = await fetchLocationData(lat, lng);
+            if (marker) {
+                newMap.removeLayer(marker);
+            }
+            marker = L.marker([lat, lng], { icon: customIcon }).addTo(newMap);
+            setFormData(prevState => ({
+                ...prevState,
+                latitude: lat.toFixed(6),
+                longitude: lng.toFixed(6),
+                location: data.data.generalName
+            }));
+        });
+    };
+
+    const fetchLocationData = async (lat, lng) => {
+        const response = await fetch(`https://route-init.gallimap.com/api/v1/reverse/generalReverse?accessToken=${process.env.REACT_APP_GALLI_MAP_ACCESS_TOKEN}&lat=${lat}&lng=${lng}`);
+        return await response.json();
+    };
+
+    const customIcon = L.icon({
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34]
+    });
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -94,11 +77,15 @@ export default function Modal({ isOpen, onClose }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formDataToSend = new FormData(); // Create a new FormData object
+        const formDataToSend = prepareFormDataToSend();
+        await submitFormData(formDataToSend);
+        onClose();
+    };
+
+    const prepareFormDataToSend = () => {
+        const formDataToSend = new FormData();
         const fileInput = document.querySelector('input[type="file"]');
         const files = fileInput.files;
-
-        // Append form data to formDataToSend
         formDataToSend.append('title', formData.title);
         formDataToSend.append('description', formData.description);
         formDataToSend.append('tagId', formData.tag);
@@ -106,35 +93,23 @@ export default function Modal({ isOpen, onClose }) {
         formDataToSend.append('latitude', formData.latitude);
         formDataToSend.append('longitude', formData.longitude);
         formDataToSend.append('location', formData.location);
-
-        // Append files
         for (let i = 0; i < files.length; i++) {
             formDataToSend.append('image', files[i]);
         }
-        console.log(formData.tag)
-        console.log(formData.subtag)
+        return formDataToSend;
+    };
 
-        console.log([...formDataToSend.entries()]);
-
-
-        // Uncomment the fetch code to send the formData to the server
-
-        const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/post`, {
+    const submitFormData = async (formDataToSend) => {
+        await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/post`, {
             method: 'POST',
             body: formDataToSend,
             headers: {
                 "auth-token": process.env.REACT_APP_AUTH_TOKEN
             },
         });
-        // isClose();
-
     };
 
-
-
-    if (!isOpen) return null;
-
-    const fetcTagData = async () => {
+    const fetchTagData = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/tag`, {
                 method: "GET",
@@ -147,13 +122,12 @@ export default function Modal({ isOpen, onClose }) {
                 throw new Error("Failed to fetch data");
             }
             const data = await response.json();
-            setTagData(data.data); // Update state with fetched data
+            setTagData(data.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
 
-    // Fetch subtag data based on tag ID
     const fetchSubtagData = async (tagId) => {
         try {
             const response = await fetch(`${process.env.REACT_APP_BASE_API_URL}/api/subtag/${tagId}`, {
@@ -167,12 +141,13 @@ export default function Modal({ isOpen, onClose }) {
                 throw new Error("Failed to fetch subtag data");
             }
             const data = await response.json();
-            setSubtagData(data.data); // Update state with fetched subtag data
+            setSubtagData(data.data);
         } catch (error) {
             console.error("Error fetching subtag data:", error);
         }
     };
 
+    if (!isOpen) return null;
 
     return (
         <div className="modal-overlay" onClick={onClose}>

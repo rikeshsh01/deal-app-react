@@ -1,56 +1,104 @@
-import React, {useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Modals from '../components/common/Modals.jsx';
 
-const Login = (props) => {
-    const [credential, setCredential] = useState({email:'',password:""})
+const Login = () => {
+    const location = useLocation();
     let navigate = useNavigate()
+    const [credential, setCredential] = useState({ email: '', password: '' });
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleClick = async (e) => {
+    useEffect(() => {
+        // Check if current URL is '/login' and open the modal accordingly
+        if (location.pathname === '/login') {
+            setIsModalOpen(true);
+        } else {
+            setIsModalOpen(false);
+        }
+    }, [location.pathname]);
+
+    const handleOnChange = (e) => {
+        setCredential({ ...credential, [e.target.name]: e.target.value });
+    };
+
+    const handleModalClose = () => {
+        // Close the modal
+        setIsModalOpen(false);
+    };
+
+
+    const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        console.log("Clicked on submit :http://127.0.0.1:7000/api/auth/login")
+        const formDataToSend = prepareFormDataToSend();
+        console.log(...formDataToSend.entries());
+
         // API Call
-        const response = await fetch("http://127.0.0.1:8080/api/auth/login", {
+        const response = await fetch("http://localhost:8080/api/login", {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
-                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/json'
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({ email:credential.email,password:credential.password })// body data type must match "Content-Type" header
+            body: formDataToSend
         });
-        console.log(response)
+
+        console.log(response, "response")
+        
         const json = await response.json();
-        console.log(json)
+        console.log(json,"json")
 
-        if (json.success) {
-            localStorage.setItem("token",json.authToken)
-            navigate("/");
-            props.alertMessage("Logged in Successfully","success")
-        }
-        else{
-            props.alertMessage("Invalid Cred","danger")
-        }
-    }
+        // if (json.success) {
+        //     localStorage.setItem("token",json.authToken)
+        //     navigate("/");
+        //     props.alertMessage("Logged in Successfully","success")
+        // }
+        // else{
+        //     props.alertMessage("Invalid Cred","danger")
+        // }
+        // await submitFormData(formDataToSend);
+        // onClose();
+    };
 
-    const onChanged =(e) =>{
-        setCredential({...credential,[e.target.name]:e.target.value})
-    }
+    const prepareFormDataToSend = () => {
+        const formDataToSend = new FormData();
+        formDataToSend.append('email', credential.email);
+        formDataToSend.append('password', credential.password);
+        return formDataToSend;
+    };
+
     return (
-        <div>
-            <form onSubmit={handleClick}>
-                <div className="form-group">
-                    <label htmlFor="email">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' value={credential.email} onChange={onChanged} aria-describedby="emailHelp" placeholder="Enter email" />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" id="password" name='password' value={credential.password} onChange={onChanged} placeholder="Password" />
-                </div>
+        <>
+            <Modals
+                isOpen={isModalOpen}
+                onClose={handleModalClose}
+                title="Login"
+                onSubmit={handleLoginSubmit}
+            >
+                <form onSubmit={handleLoginSubmit}>
+                <label htmlFor="email">Email:</label>
+                <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    required
+                    value={credential.email}
+                    onChange={handleOnChange}
+                />
 
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    )
-}
+                <label htmlFor="password">Password:</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    value={credential.password}
+                    onChange={handleOnChange}
+                />
+                <button type="submit">Submit</button>
+                    </form>
+            </Modals>
+        </>
+    );
+};
 
-export default Login
+export default Login;

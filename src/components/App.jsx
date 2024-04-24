@@ -5,6 +5,7 @@ import About from "../pages/About.js"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from "../pages/Contact.js";
 import MarketPlace from "../pages/MarketPlace.js";
+import Login from "../pages/Login.js";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
                 <Route path="/marketplace" element={<MarketPlace />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </BrowserRouter>
     );

@@ -3,8 +3,7 @@ import { FaMapMarkerAlt, FaThumbsUp, FaComment, FaArrowRight } from 'react-icons
 import Slider from "react-slick";
 import { GoArrowLeft , GoArrowRight  } from 'react-icons/go';
 
-function Card(props) {
-    console.log(props.comments)
+function Post(props) {
     const [isOpenAdditionalSection, setIsOpenAdditionalSection] = useState(false);
     const [isOpenCommentSection, setIsOpenCommentSection] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -141,4 +140,4 @@ function Card(props) {
     );
 }
 
-export default Card;
+export default Post;

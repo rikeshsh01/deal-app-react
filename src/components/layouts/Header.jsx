@@ -1,8 +1,4 @@
 import React from "react";
-import Search from "../common/Search";
-import Logo from '../common/Logo';
-import Navigation from '../common/Navigation';
-import UserProfile from '../common/UserProfile';
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { FaUserCircle } from "react-icons/fa";
