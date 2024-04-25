@@ -150,7 +150,7 @@
   border-radius: 8px;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   width: 50%;
-  height: auto;
+  height: 90%;
   /* Set maximum width if screen size is larger */
 }
 
@@ -178,7 +178,58 @@
   float: right;
 }
 
+.input__section {
+  width: 100%;
+    display: grid;
+}
+
+.input__section input{
+  padding: 10px;
+    margin: 10px 0px;
+}
+.input__section textarea{
+  padding: 10px;
+  margin: 10px 0px;
+  height: 50px;
+}
+
+.select__section{
+  display: flex;
+    flex-direction: row;
+}
+
+.select__section select {
+  width: 25%;
+  padding: 5px 0;
+  margin: 5px 5px 5px 0;
+}
+.select__section input{
+  width: auto;
+  padding: 5px 0;
+  margin: 5px 5px 5px 0;
+}
+
+.map__section input{
+  padding: 5px;
+  margin: 6px;
+  width: 30%;
+}
+
+.modal-content form{
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content form button{
+  width: 20%;
+  position: relative;
+  left: 18rem;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
 /* modal content  */
+/*
 .modal h2 {
   margin-top: 0;
 }
@@ -198,7 +249,7 @@
   box-sizing: border-box;
   outline: none;
   border-color: #1d1d1e;
-  /* box-shadow: 0 0 5px rgba(105, 105, 106, 0.5); */
+
 }
 
 .modal-content button[type="submit"] {
@@ -220,13 +271,15 @@
 .modal-content button[type="submit"] {
   display: block;
   margin: 0 auto;
-  /* Center the button */
+
 }
 
 .modal-content select {
   height: 40px;
-  /* Adjust height as needed */
+
 }
+*/
+
 
 .modal-close-btn:hover {
   color: red;
