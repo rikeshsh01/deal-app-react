@@ -34,6 +34,7 @@ const Login = () => {
             email: credential.email,
             password: credential.password
         };
+        console.log(requestData)
 
         try {
             // API Call
@@ -45,7 +46,7 @@ const Login = () => {
                 body: JSON.stringify(requestData),
             });
             const json = await response.json();
-            console.log(json.data.authToken)
+            console.log(json.data)
             let userId = json.data.userId
 
             // Handle response data
