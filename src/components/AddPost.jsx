@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
-import Modals from "./Modals"
+import Modals from "./common/Modal"
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 

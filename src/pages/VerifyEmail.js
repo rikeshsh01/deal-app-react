@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Modals from '../components/common/Modals.jsx';
+import Modals from '../components/common/Modal.jsx';
 
 const VerifyEmail = () => {
     const { userId } = useParams(); // Get userId from URL params

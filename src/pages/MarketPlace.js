@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../components/layouts/Header'
-import AddPost from '../components/common/AddPost'
+import AddPost from '../components/AddPost'
 import Main from '../components/layouts/Main'
 
 const MarketPlace = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Modals from '../components/common/Modals.jsx';
+import Modals from '../components/common/Modal.jsx';
 
 const Login = () => {
     const location = useLocation();
