@@ -5,7 +5,7 @@ import Modals from '../components/common/Modals.jsx';
 const Login = () => {
     const location = useLocation();
     let navigate = useNavigate()
-    const [credential, setCredential] = useState({ name:'', email: '', password: '', phoneNumber:'' });
+    const [credential, setCredential] = useState({ name: '', email: '', password: '', phoneNumber: '' });
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
@@ -67,50 +67,58 @@ const Login = () => {
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
                 title="Sign up"
-                customClassName = "modal-for-auth"
+                customClassName="modal-for-auth"
             >
-                <form onSubmit={handleSignUpSubmit}>
-                <label htmlFor="email">Name:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={credential.name}
-                    onChange={handleOnChange}
-                />
+                <form className='signup__form' onSubmit={handleSignUpSubmit}>
+                    <div className='signup__input__section'>
 
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    required
-                    value={credential.email}
-                    onChange={handleOnChange}
-                />
 
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    required
-                    value={credential.password}
-                    onChange={handleOnChange}
-                />
-                <label htmlFor="email">Phone Number:</label>
-                <input
-                    type="number"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    required
-                    value={credential.phoneNumber}
-                    onChange={handleOnChange}
-                />
-                <button type="submit">Sign up</button>
-                <h3>Already have account? <Link to="/login" >Login</Link></h3>
-                    </form>
+                        <label htmlFor="email">Name:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            value={credential.name}
+                            onChange={handleOnChange}
+                        />
+
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            required
+                            value={credential.email}
+                            onChange={handleOnChange}
+                        />
+
+                        <label htmlFor="password">Password:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            value={credential.password}
+                            onChange={handleOnChange}
+                        />
+                        <label htmlFor="email">Phone Number:</label>
+                        <input
+                            type="number"
+                            id="phoneNumber"
+                            name="phoneNumber"
+                            required
+                            value={credential.phoneNumber}
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div className='signup__button__section'>
+                        <button className='signup__button' type="submit">Sign up</button>
+                        <p>Already have account? <Link to="/login" >Login</Link></p>
+
+                    </div>
+
+                </form>
             </Modals>
         </>
     );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Modals from '../components/common/Modals.jsx';
 
 const VerifyEmail = () => {
@@ -51,19 +51,23 @@ const VerifyEmail = () => {
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
                 title="Verify Email"
-                customClassName = "modal-for-auth"
+                customClassName="modal-for-auth"
             >
-                <form onSubmit={handleLoginSubmit}>
-                    <label htmlFor="verifyemail">Verification Code:</label>
-                    <input
-                        type="text"
-                        id="verifyemail"
-                        name="verifyemail"
-                        required
-                        value={verificationCode}
-                        onChange={handleOnChange}
-                    />
-                    <button type="submit">Send</button>
+                <form className='verifyemail__form' onSubmit={handleLoginSubmit}>
+                    <div className='verifyemail__input__section'>
+                        <label htmlFor="verifyemail">Verification Code:</label>
+                        <input
+                            type="text"
+                            id="verifyemail"
+                            name="verifyemail"
+                            required
+                            value={verificationCode}
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div className='verifyemail__button__section'> 
+                        <button type="submit">Send</button>
+                    </div>
                 </form>
             </Modals>
         </>

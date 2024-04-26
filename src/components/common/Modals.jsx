@@ -7,7 +7,7 @@ export default function Modals({ isOpen, onClose, title, children, customClassNa
     if (!isOpen) return null;
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
+        <div className="modal-overlay" >
             <div className={`modal ${customClassName}`} onClick={(e) => e.stopPropagation()}>
                 <button className="modal-close-btn"><FaTimes onClick={onClose} /></button>
                 <h2>{title}</h2>

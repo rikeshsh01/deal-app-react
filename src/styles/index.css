@@ -150,7 +150,7 @@
   border-radius: 8px;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   width: 50%;
-  height: 90%;
+  height: auto;
   /* Set maximum width if screen size is larger */
 }
 
@@ -177,143 +177,232 @@
   font-size: 18px;
   float: right;
 }
-
-.input__section {
-  width: 100%;
-    display: grid;
-}
-
-.input__section input{
-  padding: 10px;
-    margin: 10px 0px;
-}
-.input__section textarea{
-  padding: 10px;
-  margin: 10px 0px;
-  height: 50px;
-}
-
-.select__section{
-  display: flex;
-    flex-direction: row;
-}
-
-.select__section select {
-  width: 25%;
-  padding: 5px 0;
-  margin: 5px 5px 5px 0;
-}
-.select__section input{
-  width: auto;
-  padding: 5px 0;
-  margin: 5px 5px 5px 0;
-}
-
-.map__section input{
-  padding: 5px;
-  margin: 6px;
-  width: 30%;
-}
-
-.modal-content form{
-  display: flex;
-  flex-direction: column;
-}
-
-.modal-content form button{
-  width: 20%;
-  position: relative;
-  left: 18rem;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-}
-/* modal content  */
-/*
-.modal h2 {
-  margin-top: 0;
-}
-
-.modal-content {
-  margin-top: 20px;
-}
-
-.modal-content input,
-.modal-content textarea,
-.modal-content select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  outline: none;
-  border-color: #1d1d1e;
-
-}
-
-.modal-content button[type="submit"] {
-  background-color: #c9cec9;
-  color: black;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-weight: 600;
-}
-
-.modal-content button[type="submit"]:hover {
-  background-color: #5f615f;
-  color: white;
-}
-
-.modal-content button[type="submit"] {
-  display: block;
-  margin: 0 auto;
-
-}
-
-.modal-content select {
-  height: 40px;
-
-}
-*/
-
-
 .modal-close-btn:hover {
   color: red;
   /* change color on hover */
 }
 
-.forget-password{
-  text-align: center;
+
+
+/* for add post  */
+
+.addpost__input__section {
+  width: 100%;
+    display: grid;
 }
-.new-account-button-container{
+
+.addpost__input__section input{
+  padding: 10px;
+    margin: 10px 0px;
+}
+.addpost__input__section textarea{
+  padding: 10px;
+  margin: 10px 0px;
+  height: 50px;
+}
+
+.addpost__select__section{
   display: flex;
-    justify-content: center;
+    flex-direction: row;
 }
 
-.new-account-button{
-  padding: 12px;
-    background: lightgray;
-    border: none;
-    border-radius: 5px;
-    font-weight: 600;
+.addpost__select__section select {
+  width: 25%;
+  padding: 5px 0;
+  margin: 5px 5px 5px 0;
 }
-.new-account-button a{
-  color: black;
-  text-decoration: none;
-}
-
-.new-account-button a:hover {
-  color:grey;
+.addpost__select__section input{
+  width: auto;
+  padding: 5px 0;
+  margin: 5px 5px 5px 0;
 }
 
+.addpost__map__section input{
+  padding: 5px;
+  margin: 6px;
+  width: 30%;
+}
+
+.modal-content .addpost__form{
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content .addpost__form button{
+  width: 20%;
+  align-self: center;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+/* for login */
 .modal-for-auth{
   width: 20%;
 }
 
+.login__form{
+  display: flex;
+    flex-direction: column;
+}
+
+.login__input__section{
+  width: 100%;
+  display: grid;
+}
+
+.login__input__section input {
+  padding: 10px 0px;
+  margin: 10px 0px;
+}
+
+.login__button__section{
+  display: flex;
+    flex-direction: column;
+}
+
+.create__account__button{
+  width: 50%;
+  align-self: center;
+  padding: 5px 10px
+}
+.create__account__button a{
+  text-decoration: none;
+  color: black;
+}
+
+.login__button{
+  width: 20%;
+  align-self: center;
+  padding: 5px 10px;
+
+}
+.login__button__section p {
+  align-self: center;
+}
+
+
+/* for signup  */
+.signup__form{
+  display: flex;
+    flex-direction: column;
+}
+
+.signup__input__section{
+  width: 100%;
+  display: grid;
+}
+
+.signup__input__section input {
+  padding: 10px 0px;
+  margin: 10px 0px;
+}
+
+.signup__button__section{
+  display: flex;
+    flex-direction: column;
+}
+
+.signup__button{
+  width: 25%;
+  align-self: center;
+  padding: 5px 10px;
+
+}
+.signup__button__section p {
+  align-self: center;
+}
+
+
+/* verify email  */
+.verifyemail__form{
+  display: flex;
+  flex-direction: column;
+}
+
+.verifyemail__input__section{
+  width: 100%;
+  display: grid;
+}
+
+.verifyemail__input__section input{
+  padding: 10px 0px;
+  margin: 10px 0px;
+}
+
+.verifyemail__button__section button{
+  width: 25%;
+  align-self: center;
+  padding: 5px 10px;
+}
+
+.verifyemail__button__section{
+  display: flex;
+    flex-direction: column;
+}
+
+
+/* Forget password section  */
+.forgetpassword__form{
+  display: flex;
+  flex-direction: column;
+}
+
+.forgetpassword__input__section{
+  width: 100%;
+  display: grid;
+}
+
+.forgetpassword__input__section input{
+  padding: 10px 0px;
+  margin: 10px 0px;
+}
+
+.forgetpassword_button_section button{
+  width: 35%;
+  align-self: center;
+  padding: 5px 10px;
+}
+.forgetpassword_button_section{
+  display: flex;
+    flex-direction: column;
+}
+.otp__section{
+  width: 100%;
+  display: grid;
+}
+
+.otp__section input{
+  padding: 10px 0px;
+  margin: 10px 0px;
+}
+
+
+/* reset password  */
+.resetpassword__form{
+  display: flex;
+  flex-direction: column;
+}
+
+.resetpassword__input__section{
+  width: 100%;
+  display: grid;
+}
+
+.resetpassword__input__section input{
+  padding: 10px 0px;
+  margin: 10px 0px;
+}
+
+.resetpassword__button__section button{
+  width: 25%;
+  align-self: center;
+  padding: 5px 10px;
+}
+
+.resetpassword__button__section{
+  display: flex;
+    flex-direction: column;
+}
 
 
 
@@ -360,8 +449,6 @@
     padding: 0 0 15px 0;
 }
 
-
-
 .slick-dots{
   display: flex !important;
   list-style: none;
@@ -384,7 +471,6 @@
   border-radius: 20px;
 }
 
-/* Ensure consistent sizing for images */
 .slick-slide img {
   width: 100%;
   height: auto; 
@@ -411,10 +497,8 @@
   height: 450px;
   object-fit: cover;
   width: 59rem;
-  left: -29px;
+  /* left: -29px; */
 }
-
-
 
 .card__info {
   /* display: flex; */

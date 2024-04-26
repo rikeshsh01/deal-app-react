@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Modals from '../components/common/Modals.jsx';
 
 const Login = () => {
@@ -69,31 +69,31 @@ const Login = () => {
                 title="Login"
                 customClassName="modal-for-auth"
             >
-                <form onSubmit={handleLoginSubmit}>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        required
-                        value={credential.email}
-                        onChange={handleOnChange}
-                    />
-
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        required
-                        value={credential.password}
-                        onChange={handleOnChange}
-                    />
-                    <button type="submit">Login</button>
-                    <p className='forget-password'>Forget password? <Link>Reset now</Link></p>
-                    <div className='new-account-button-container'>
-                    <button className='new-account-button'><Link to="/signup">Create new account</Link></button>
-
+                <form className='login__form' onSubmit={handleLoginSubmit}>
+                    <div className='login__input__section'>
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            required
+                            value={credential.email}
+                            onChange={handleOnChange}
+                        />
+                        <label htmlFor="password">Password:</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            value={credential.password}
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div className='login__button__section'>
+                        <button className='login__button' type="submit">Login</button>
+                        <p >Forget password? <Link to="/forgetpassword">Reset now</Link></p>
+                        <button className='create__account__button'><Link to="/signup">Create new account</Link></button>
                     </div>
 
                 </form>

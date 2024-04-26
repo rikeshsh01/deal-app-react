@@ -180,12 +180,12 @@ const AddPost = () => {
                 title="Add post"
                 onSubmit={handleSubmit}
             >
-                <form onSubmit={handleSubmit}>
-                    <div className="input__section">
+                <form className="addpost__form" onSubmit={handleSubmit}>
+                    <div className="addpost__input__section">
                         <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} />
                         <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange}></textarea>
                     </div>
-                    <div className="select__section">
+                    <div className="addpost__select__section">
                         <select name="tag" value={formData.tag} onChange={handleChange}>
                             <option value="">Select Tag</option>
                             {tagData && tagData.map(tag => (
@@ -202,7 +202,7 @@ const AddPost = () => {
                         )}
                         <input type="file" name="file" accept="image/*, .pdf, .doc, .docx" multiple />
                     </div>
-                    <div className="map__section">
+                    <div className="addpost__map__section">
                         <div id="map" style={{ height: '300px', width: '100%' }}></div>
                         <input type="text" name="latitude" placeholder="Latitude" value={formData.latitude} onChange={handleChange} />
                         <input type="text" name="longitude" placeholder="Longitude" value={formData.longitude} onChange={handleChange} />
