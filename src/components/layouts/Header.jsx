@@ -29,13 +29,13 @@ const Header = () => {
                         <li className="scroll-to-section"><Link to="/marketplace" className="">Marketplace</Link></li>
                         <li className="scroll-to-section"><Link to="/contact" className="">Contact</Link></li>
                     </ul>
-                    <div className="nav-extras">
+                    {/* <div className="nav-extras">
                         <form className="search-form">
                             <input type="text" placeholder="Search" className="search-input" />
                             <button type="submit" className="search-button"><CiSearch size={20} /></button>
                         </form>
 
-                    </div>
+                    </div> */}
                     <div className="user-profile">
                         <FaUserCircle size={40} />
                         <ul className="profile-list">

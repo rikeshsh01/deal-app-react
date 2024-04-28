@@ -11,7 +11,6 @@ const Main = ()=>{
         }, []);
     
         const fetchData = async () => {
-            
             try {
                 let authToken = localStorage.getItem("authToken")
                 const response = await fetch("http://localhost:8080/api/post", {
@@ -24,13 +23,15 @@ const Main = ()=>{
                     throw new Error("Failed to fetch data");
                 }
                 const data = await response.json();
-                setPosts(data.data); // Update state with fetched data
+                console.log(data)
+                const set = setPosts(data.data); // Update state with fetched data
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
-    
+        console.log("binu")
         console.log(posts)
+        console.log("binu")
     return (
         <div className="main">
                 {posts.map((val, index, arr) => {

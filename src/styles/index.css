@@ -1,5 +1,10 @@
-#root {
-  margin: 0;
+*{
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+}
+#root{
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,10 +15,9 @@
 .header {
   padding: 10px 20px;
     background-color: #f8f9fa;
-    width: 80%;
+    width: 100%;
+    margin-bottom: 1rem;
 }
-
-
 
 /* new nav  */
 .container {
@@ -51,9 +55,7 @@
   text-decoration: none;
   color: #666;
   transition: color 0.3s ease;
-
   font-size: 15px;
-
   letter-spacing: 1px;
   line-height: 40px;
   font-weight: 600;
@@ -712,7 +714,104 @@ border-radius: 10px;
   top: 10px;
 }
 
+/* < ------------About Us Page start -----------------> */
+.about-us{
+  display: flex;
+  justify-content: center;
+}
+.about-container{
+  height: 500px;
+  width: 80%;
+  margin: auto;
+  /* background-color: rgb(233, 233, 233); */
+  display: flex;
+}
+.about-img{
+  width: 40%;
+  /* background-color: aqua; */
+  padding: 2rem;
+  object-fit:fill;
+  filter: drop-shadow(-20px -20px 1px #000000);
 
+}
+.about-content{
+  width: 60%;
+  margin: auto;
+  padding: 2rem;
+  
+}
 
+/* < ------------About Us Page end -----------------> */
 
+/* < ------------Footer Page start -----------------> */
+footer{
+  margin-top: auto;
+  background-color: rgb(246, 246, 246);
+  display: flex;
+  flex-direction: column;
+  
+}
+.footer-container{
+  width: 80%;
+  padding: 1.5rem 3rem;
+  display: flex;
+  margin: auto;
+  gap: 1rem;
+}
+.footer-content{
+  flex: 1.5;
+  flex-basis: 100%;
+}
 
+.footer-content h4{
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
+.footer-content ul{
+  list-style: none;
+  line-height: 1.5;
+}
+.footer-content >ul >li >a{
+  text-decoration: none;
+  color: black;
+}
+.footer-copyright{
+ background-color:rgb(3, 3, 3);
+ color: white;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 2rem;
+}
+/* < ------------Footer Page end -----------------> */
+.search-container{
+  height: 65px;
+  width: 40%; 
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: rgb(0, 0, 0) solid;
+  background-color: rgb(255, 255, 255);
+  padding-left: 0.25rem;
+  margin-top: 1rem;
+}
+.search-container input{
+  /* flex-grow: 1; */
+  font-size: 1rem;
+  padding: 0 1rem;
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+.search-btn{
+  position: relative;
+    right: -16px;
+  width: 60px;
+  background: transparent;
+  height:60px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: 0;
+  background-color: rgb(205, 205, 205);
+}
